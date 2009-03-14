@@ -24,7 +24,10 @@ class IttyBittyURLNode(template.Node):
         # see if it's worth shortening this URL
         path = request.path.strip('/')
         next_shortcut = gen_shortcut(IttyBittyURL.objects.count() + 1)
-        if len(path) < len(next_shortcut):
+
+        # if we have a shortcut that matches the path, we shouldn't make an Itty Bitty URL
+        if IttyBittyURL.objects.filter(shortcut__exact=path).count() or \
+            len(path) <= len(next_shortcut):
             # it's shorter than the generated shortcut would be... don't store
             # the object and just use the URL itself
             ittybitty = IttyBittyURL(url=url, shortcut=path)
