@@ -21,7 +21,7 @@ VALID = [('Z',9223372036854775808L),('Y',4611686018427387904L),
 ('j',8192),('i',4096),('3',2048),('h',1024),('g',512),('2',256),('f',128),
 ('e',64),('1',32),('d',16),('c',8),('0',4),('b',2),('a',1)]
 
-def gen_shortcut(num):
+def gen_shortcut_old(num):
     """
     Generates a short URL for any URL on your Django site.  It is intended to
     make long URLs short, a la TinyURL.com.
@@ -32,3 +32,11 @@ def gen_shortcut(num):
             short += key
             num -= val
     return short
+    
+def gen_shortcut(input):
+    CLIST="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    rv = ""
+    while input != 0:
+        rv = CLIST[input % 62] + rv
+        input /= 62
+    return rv
