@@ -34,9 +34,9 @@ def gen_shortcut_old(num):
     return short
     
 def gen_shortcut(input):
-    CLIST="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    CLIST="0123456789abcdefghijklmnopqrstuvwxyz"
     rv = ""
     while input != 0:
-        rv = CLIST[input % 62] + rv
-        input /= 62
+        rv = CLIST[input % 36] + rv
+        input /= 36
     return rv
