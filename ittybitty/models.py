@@ -2,7 +2,6 @@ from django.contrib.sites.models import Site
 from django.db import models
 from ittybitty.utils import gen_shortcut
 
-SITE = Site.objects.get_current()
 
 class IttyBittyURL(models.Model):
     """
@@ -19,6 +18,7 @@ class IttyBittyURL(models.Model):
         return self.url
 
     def get_shortcut(self):
+        SITE = Site.objects.get_current()
         return 'http://%s/%s' % (SITE.domain, self.shortcut)
 
     class Meta:
