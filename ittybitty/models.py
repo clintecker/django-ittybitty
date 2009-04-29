@@ -9,7 +9,7 @@ class IttyBittyURL(models.Model):
     a real URL.
     """
     shortcut = models.CharField(max_length=10, blank=True, unique=True)
-    url = models.URLField(unique=True)
+    url = models.URLField(unique=True, max_length=255)
     hits = models.PositiveIntegerField(default=0)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
